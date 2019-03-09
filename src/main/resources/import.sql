@@ -1,0 +1,1 @@
+insert into tempo (id, dia_semana, temperatura_minima, temperatura_maxima, umidade_relativa, descricao) values (1, 'Terca Feira', 32, 37, '78%', 'Vai chover bastante por ser verao');
