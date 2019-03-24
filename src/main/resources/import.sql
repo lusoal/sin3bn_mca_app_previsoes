@@ -1,1 +1,2 @@
-insert into tempo (id, dia_semana, temperatura_minima, temperatura_maxima, umidade_relativa, descricao) values (1, 'Terca Feira', 32, 37, '78%', 'Vai chover bastante por ser verao');
+--adicione um usuário
+insert into usuario (login, senha) values ('admin', 'admin')
