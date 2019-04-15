@@ -31,7 +31,7 @@ public class LoginController {
 		
 		if (userServ.validarLogin(user)) {
 			request.getSession().setAttribute("usuarioLogado", user);
-			return "redirect:/previsao";
+			return "redirect:/previsao/";
 		}else {
 			return "/";
 		}

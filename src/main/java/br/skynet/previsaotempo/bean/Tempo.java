@@ -3,9 +3,12 @@ package br.skynet.previsaotempo.bean;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 //Mapeada para uma tabela no banco de dados que sera utilizada
 @Entity
@@ -15,7 +18,9 @@ public class Tempo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String diaSemana;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "dia_da_semana", columnDefinition="INTEGER")//Join column e para mapear o nome da coluna no banco de dados
+	private DiaDaSemana diaDaSemana;
 	private double temperaturaMinima;
 	private double temperaturaMaxima;
 	private String umidadeRelativa;
@@ -56,14 +61,6 @@ public class Tempo implements Serializable {
 		this.dataHora = dataHora;
 	}
 
-	public String getDiaSemana() {
-		return diaSemana;
-	}
-
-	public void setDiaSemana(String diaSemana) {
-		this.diaSemana = diaSemana;
-	}
-
 	public double getTemperaturaMinima() {
 		return temperaturaMinima;
 	}
@@ -94,6 +91,14 @@ public class Tempo implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public DiaDaSemana getDiaDaSemana() {
+		return diaDaSemana;
+	}
+
+	public void setDiaDaSemana(DiaDaSemana diaDaSemana) {
+		this.diaDaSemana = diaDaSemana;
 	}
 
 }

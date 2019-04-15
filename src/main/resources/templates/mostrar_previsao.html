@@ -19,8 +19,9 @@
 
 			<form class="form-inline" method="post" th:object="${tempo}" th:action="@{/previsao}" style="margin: 20px 0">
 				<div class="form-group">
-					
-					<input type="text" class="form-control" placeholder="Dia da Semana" th:field="*{diaSemana}" /> 
+					<select th:field="*{diaDaSemana}">
+					    <option th:each="diaSemana : ${diasSemana}" th:value="${diaSemana.id}" th:text="${diaSemana.diaDaSemana}"></option>
+					</select>		
 					<input type="text" class="form-control" placeholder="Temp Minima" th:field="*{temperaturaMinima}" /> 
 					<input type="text" class="form-control" placeholder="Temp Maxima" th:field="*{temperaturaMaxima}" />
 					<input type="text" class="form-control" placeholder="Umidade Relativa" th:field="*{umidadeRelativa}" />
@@ -45,7 +46,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="previsao : ${previsoes}">
-						<td th:text="${previsao.diaSemana}"></td>
+						<td th:text="${previsao.diaDaSemana?.diaDaSemana}"></td>
 						<td th:text="${previsao.temperaturaMinima}"></td>
 						<td th:text="${previsao.temperaturaMaxima}"></td>
 						<td th:text="${previsao.umidadeRelativa}"></td>
