@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 //Mapeada para uma tabela no banco de dados que sera utilizada
@@ -19,14 +20,17 @@ public class Tempo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "dia_da_semana", columnDefinition="INTEGER")//Join column e para mapear o nome da coluna no banco de dados
+	@JoinColumn(name = "dia_da_semana", columnDefinition = "INTEGER") // Join column e para mapear o nome da coluna no
+																		// banco de dados
 	private DiaDaSemana diaDaSemana;
 	private double temperaturaMinima;
 	private double temperaturaMaxima;
 	private String umidadeRelativa;
 	private String descricao;
-	private String latitude;
-	private String longitude;
+	@ManyToOne
+	@JoinColumn(name = "cidade_id")
+	private Cidade cidade;
+	
 	private String dataHora;
 
 	public Long getId() {
@@ -35,22 +39,6 @@ public class Tempo implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-
-	public String getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
 	}
 
 	public String getDataHora() {
@@ -99,6 +87,14 @@ public class Tempo implements Serializable {
 
 	public void setDiaDaSemana(DiaDaSemana diaDaSemana) {
 		this.diaDaSemana = diaDaSemana;
+	}
+	
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 
 }

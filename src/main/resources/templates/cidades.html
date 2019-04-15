@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Cidade</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+</head>
+<body>
+
+<form method="post" th:object="${cidade}" th:action="@{/cidade/}">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="text" class="form-control" placeholder="Nome da Cidade" th:field="*{nome}">
+    
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Latitude" th:field="*{latitude}">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Longitude" th:field="*{longitude}">
+  </div> 
+  <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+<br>
+<br>
+<br>
+<table class="table">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Latitude</th>
+						<th>Longitude</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cidade : ${cidades}">
+						<td th:text="${cidade.nome}"></td>
+						<td th:text="${cidade.latitude}"></td>
+						<td th:text="${cidade.longitude}"></td>
+					</tr>
+				</tbody>
+			</table>
+</body>
+</html>
