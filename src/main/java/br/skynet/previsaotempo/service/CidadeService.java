@@ -20,4 +20,12 @@ public class CidadeService {
 	public List<Cidade> getAllCidades(){
 		return cidadeRepo.findAll();
 	}
+	
+	public List<Cidade> getCidadesLetra(String letra) {
+		return cidadeRepo.findCityByLetter(letra);
+	}
+	
+	public Cidade getCidadesLatitudeLongitude (String latitude, String longitude) {
+		return cidadeRepo.findCityLaLo(latitude, longitude);
+	}
 }
